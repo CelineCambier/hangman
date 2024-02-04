@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import words from "./wordList.json"
 import { HangmanDrawing } from "./HangmanDrawing"
 import { HangmanWord } from "./HangmanWord"
@@ -11,6 +11,7 @@ function App() {
   const [guessedLetters, setGuessedLetters] = useState<string[]>([])
 
   const incorrectLetters = guessedLetters.filter(letter => !wordToGuess.includes(letter))
+
 
   return (
     <div 
@@ -28,7 +29,7 @@ function App() {
         Win
       </div>
       <HangmanDrawing numberOfGuesses={incorrectLetters.length}/>
-      <HangmanWord />
+      <HangmanWord guessedLetters={guessedLetters} wordToGuess={wordToGuess}/>
       <div style={{ alignSelf: "stretch"}}>
         <Keyboard />
       </div>
